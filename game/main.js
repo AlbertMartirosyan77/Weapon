@@ -1,4 +1,4 @@
-
+let correct;
 let seconds = 20
 let correctAnswer = 0
 let incorrectAnswer = 0
@@ -8,43 +8,62 @@ function getElement(id) {
 }
 
 
-function getRandomWeapons(){
-    let raundomItem  = Math.floor(Math.random(Weapon.lenght-1)*10) 
-    
+function getRandomWeapons() {
+    let raundomItem = Math.floor(Math.random(Weapon.lenght - 1) *Weapon.length )
     console.log(raundomItem)
-    return Weapon [raundomItem]
+    return Weapon[raundomItem]
 }
-function main (){
-    coun = getRandomWeapons();
-    getElement("Weapon").src = coun.weapons;
+function main() {
+    let options = [];
+    const maxOptions = 3;
+
+    while (options.length < maxOptions) {
+        let coun = getRandomWeapons();
+        if (options.indexOf(coun) === -1) {
+            options.push(coun);
+        }
+    }
+
+    for (let i = 0; i < options.lenght; i++) {
+        getElement(`options${i + 1}label`).innerHTML = options[i].name;
+        getElement(`options${i + 1}input`).value = options[i].name;
+        getElement(`options${i + 1}input`).checked = false;
+    }
+
+    correct = options[Math.round(Math.random() * (options.length - 1))];
+    getElement("Weapon").src = correct.weapons;
 }
-function timer () {
-  setTimeout(finish, seconds * 1000);
+function timer() {
+    setTimeout(finish, seconds * 1000);
     getElement("time").innerHTML = seconds;
     let countdown = setInterval(function () {
-        main ();
+        main();
         seconds--;
         getElement("time").textContent = seconds;
-        if (seconds <= 0 ) clearInterval(countdown);
+        if (seconds <= 0) clearInterval(countdown);
         if (seconds == 10) getElement("time").style.color = "#ffffff";
-    }, 1000)
+    }, 1000);
 }
 function check() {
     let input;
     try {
         input = document.querySelector('input[name = "option"]:checked').value;
-    }catch {
-        //alert("unenq sxal")
+    } catch {
         return;
     }
-    correctAnswer++;
-    getElement("score").innerHTML = correctAnswer
-    clearInterval(checkInterval);
+    if (input === correct.name) {
+        correctAnswer++;
+        getElement("score").innerHTML = correctAnswer
+    } else {
+        incorrectAnswer++
+    }
+    main();
 }
-function finish(){
+function finish() {
     clearInterval(checkInterval);
     let percentage = 100;
     getElement("alertaccuracy").innerHTML = `${percentage}%`
 }
 let checkInterval = setInterval(check, 50)
+main();
 timer();

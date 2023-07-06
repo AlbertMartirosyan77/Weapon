@@ -20,8 +20,8 @@ const Weapon = [
     "name": "mmini uzi"
     },
     {
-    "weapons": "WEAPON/SVDDRagunov-10.jpg",
-    "name": "Svd Dragunov"
+    "weapons": "WEAPON/SVD-DRagunov-10.jpg",
+    "name": "SvdDragunov"
     },
     {
     "weapons": "WEAPON/images-1.jpg",
@@ -36,8 +36,8 @@ const Weapon = [
     "name": "Desert Eagle"
     },
     {
-    "weapons": "WEAPON/",
-    "name": "m1887"
+    "weapons": "WEAPON/zenq-5.jpg",
+    "name": "m16"
     },
     {
     "weapons": "WEAPON/images-4.jpg",
