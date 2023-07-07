@@ -1,5 +1,5 @@
 let correct;
-let seconds = 20
+let seconds = 25
 let correctAnswer = 0
 let incorrectAnswer = 0
 
@@ -9,39 +9,36 @@ function getElement(id) {
 
 
 function getRandomWeapons() {
-    let raundomItem = Math.floor(Math.random(Weapon.lenght - 1) *Weapon.length )
-    console.log(raundomItem)
+    let raundomItem = Math.floor(Math.random() *(Weapon.length-1))
     return Weapon[raundomItem]
 }
+
 function main() {
     let options = [];
     const maxOptions = 3;
-
     while (options.length < maxOptions) {
         let coun = getRandomWeapons();
         if (options.indexOf(coun) === -1) {
             options.push(coun);
         }
     }
-
-    for (let i = 0; i < options.lenght; i++) {
-        getElement(`options${i + 1}label`).innerHTML = options[i].name;
-        getElement(`options${i + 1}input`).value = options[i].name;
-        getElement(`options${i + 1}input`).checked = false;
+    for (let i = 0; i < options.length; i++) {
+        getElement(`option${i + 1}label`).innerHTML = options[i].name;
+        getElement(`option${i + 1}input`).value = options[i].name;
+        getElement(`option${i + 1}input`).checked = false;
     }
-
     correct = options[Math.round(Math.random() * (options.length - 1))];
     getElement("Weapon").src = correct.weapons;
 }
+
 function timer() {
     setTimeout(finish, seconds * 1000);
     getElement("time").innerHTML = seconds;
     let countdown = setInterval(function () {
-        main();
         seconds--;
         getElement("time").textContent = seconds;
         if (seconds <= 0) clearInterval(countdown);
-        if (seconds == 10) getElement("time").style.color = "#ffffff";
+        if (seconds === 5) getElement("time").style.color = "#ff0000";
     }, 1000);
 }
 function check() {
@@ -53,17 +50,28 @@ function check() {
     }
     if (input === correct.name) {
         correctAnswer++;
-        getElement("score").innerHTML = correctAnswer
+        getElement("score").innerHTML = correctAnswer;
     } else {
-        incorrectAnswer++
+        incorrectAnswer++;
     }
     main();
 }
 function finish() {
     clearInterval(checkInterval);
-    let percentage = 100;
-    getElement("alertaccuracy").innerHTML = `${percentage}%`
+    let percentage =Math.round(correctAnswer/ (incorrectAnswer + correctAnswer) * 100);
+    let resultForAnswer ;
+    if (isNaN(percentage)) {
+        resultForAnswer = "ski mer dasarani amena anxelqna qezani xelaci🤪"
+    }
+    else if (percentage <=75) {
+        resultForAnswer = "esqan hest harcer ckrecar patasxanes amot qez☠️"
+    }
+    else if (percentage >= 75){
+        resultForAnswer = "cmtaces vor du xelaci es esem hest harcer dre!😎"
+    }
+    getElement("alertaccuracy").innerHTML = ` ${resultForAnswer}`;
 }
-let checkInterval = setInterval(check, 50)
+
+let checkInterval = setInterval(check, 50);
 main();
 timer();
