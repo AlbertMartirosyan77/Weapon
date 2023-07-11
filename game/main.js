@@ -1,5 +1,5 @@
 let correct;
-let seconds = 25
+let seconds = 30
 let correctAnswer = 0
 let incorrectAnswer = 0
 
@@ -58,18 +58,31 @@ function check() {
 }
 function finish() {
     clearInterval(checkInterval);
+    getElement("alert").style.display = "block"
+    getElement("card").style.display = "none"
+    getElement("alertscore").innerHTML = correctAnswer;
     let percentage =Math.round(correctAnswer/ (incorrectAnswer + correctAnswer) * 100);
-    let resultForAnswer ;
+
     if (isNaN(percentage)) {
-        resultForAnswer = "ski mer dasarani amena anxelqna qezani xelaci🤪"
+        percentage = "դուք հավաքել եք 0% դա նշանակում է որ վոչմի բան չգիտես"
+        getElement("alertaccuracy").innerHTML = `${percentage}`;
     }
-    else if (percentage <=75) {
-        resultForAnswer = "esqan hest harcer ckrecar patasxanes amot qez☠️"
+    else if (percentage >= 80) {
+        percentage = "մալադեց լավա"
+        getElement("alertaccuracy").innerHTML = `${percentage}`;
     }
-    else if (percentage >= 75){
-        resultForAnswer = "cmtaces vor du xelaci es esem hest harcer dre!😎"
+    else if (percentage >=40) {
+        percentage = "նորմալ է բայց դա չի նշանակմ որ գիտես"
+        getElement("alertaccuracy").innerHTML = `${percentage}`;
     }
-    getElement("alertaccuracy").innerHTML = ` ${resultForAnswer}`;
+    else if ( percentage <= 40) {
+        percentage = "Գնա ծառաըի մի բան սվորի մի բանելա չգիտես"
+        getElement("alertaccuracy").innerHTML = `${percentage}`;
+    }
+}
+
+function refresh() {
+    location = location
 }
 
 let checkInterval = setInterval(check, 50);

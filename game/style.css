@@ -121,13 +121,27 @@ html {
 .button {
     width: 100px;
     height: 40px;
-    background: rgb(0, 255, 68);
-    border: 1px solid rgb(255, 0, 0);
+    background: rgb(255, 255, 255);
+    border: 1px solid rgb(0, 0, 0);
     border-radius: 4px;
     height: 30px;
-    color: rgb(255, 0, 0);
+    color: rgb(0, 0, 0);
 }
 
 .button:hover {
     background-color: rgb(0, 255, 68);
+}
+
+.img {
+    height: 100%;
+    width: 100%
+}
+    
+.box{
+    width: 30%;
+    margin-left: -100px;
+    margin-right: 154px;
+    margin-top: 65px;
+    height: 200px;
+    border: 1px dashed #38c3f5;
 }

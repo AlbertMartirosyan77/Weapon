@@ -79,4 +79,20 @@ const Weapon = [
         "weapons": "WEAPON/M14-1.jpg",
         "name": "M14"
     },
+    {
+        "weapons": "WEAPON/USAS-12-1.jpg",
+        "name": "USAS-12"
+    },
+    {
+        "weapons": "WEAPON/PKP Pecheneg-5.jpg",
+        "name": "PKP-Pecheneg"
+    },
+    {
+        "weapons": "WEAPON/Sa80-1.jpg",
+        "name": "Sa80"
+    },
+    {
+        "weapons": "WEAPON/KSG-12-1.jpg",
+        "name": "KSG-12"
+    },
 ];
